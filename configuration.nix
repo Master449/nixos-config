@@ -3,8 +3,8 @@
   imports = [ 
     ./hardware-configuration.nix 
     ./userspace.nix 
-    ./desktops/plasma6.nix
-#    ./desktops/gnome.nix
+#    ./desktops/plasma6.nix
+    ./desktops/gnome.nix
     ./modules/virtualization.nix
     ./modules/samba.nix
     ];
@@ -12,7 +12,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.nixPath = [ 
     "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos-unstable"
-    "nixos-config=/home/david/Documents/.dotfiles/nixos/configuration.nix" 
+    "nixos-config=/home/david/Documents/nixos-config/configuration.nix" 
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
 
@@ -26,8 +26,17 @@
       grub = {
         efiSupport = true;
         device = "nodev";
-        useOSProber = true;
+        useOSProber = false;
         default = "saved";
+        extraEntries = ''
+menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os $menuentry_id_option 'osprober-efi-20A4-5216' {
+	savedefault
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root 20A4-5216
+	chainloader /efi/Microsoft/Boot/bootmgfw.efi
+}
+        '';
       };
     };
     supportedFilesystems = [ "ntfs" ];
