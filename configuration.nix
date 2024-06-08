@@ -3,8 +3,8 @@
   imports = [ 
     ./hardware-configuration.nix 
     ./userspace.nix 
-#    ./desktops/plasma6.nix
-    ./desktops/gnome.nix
+    ./desktops/plasma6.nix
+#    ./desktops/gnome.nix
     ./modules/virtualization.nix
     ./modules/samba.nix
     ];
@@ -15,7 +15,7 @@
     "nixos-config=/home/david/Documents/nixos-config/configuration.nix" 
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
-
+  
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
@@ -49,19 +49,20 @@ menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os 
   };
 
   environment.systemPackages = with pkgs; [
-    alacritty
     btop
     curl
     xdelta
     git
     htop
     jdk17
+    kitty
     killall
     lutris
     neofetch
     neovim
     nvtopPackages.full
     p7zip
+    python312
     tailscale
     wget
     wl-clipboard
@@ -70,6 +71,14 @@ menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os 
     zsh
   ];
   
+  nixpkgs.config.packageOverrides = pkgs: {
+    vivaldi = pkgs.vivaldi.overrideAttrs (oldAttrs: {
+      dontWrapQtApps = false;
+      dontPatchELF = true;
+      nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
+    });
+  };
+
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
