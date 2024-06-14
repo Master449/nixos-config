@@ -79,7 +79,23 @@
   programs.gamemode.enable = true;
   programs.zsh.enable = true;
  
- # ------------------ Locale Settings ---------------
+  # ------------------ Hardware Settings ---------------
+  
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  networking.hostName = "nixbox";
+  # networking.wireless.enable = true;
+  networking.networkmanager.enable = true;
+  
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  
+  # ------------------ Locale Settings ---------------
 
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -96,19 +112,6 @@
 
   time.timeZone = "America/Chicago";
   
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-  networking.hostName = "nixbox";
-  # networking.wireless.enable = true;
-  networking.networkmanager.enable = true;
-  
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
 
   # ------------------------------------------------
 }
