@@ -12,15 +12,20 @@
     extraGroups = [ "networkmanager" "wheel" "kvm" "libvirt" "libvirtd" ];
     isNormalUser = true;
     packages = with pkgs; [
-      vscode
       discord
       dolphin
+      fastfetch
+      jdk17
+      lutris
       prismlauncher
+      qbittorrent
       steam
       tailscale
       virt-manager
       vivaldi
       yakuake
+      vlc
+      vscode
     ];
     shell = pkgs.zsh;
   };  

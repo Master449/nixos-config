@@ -54,18 +54,12 @@ menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os 
     xdelta
     git
     htop
-    jdk17
     kitty
-    killall
-    lutris
-    neofetch
     neovim
     nvtopPackages.full
     p7zip
     python312
-    qbittorrent
     tailscale
-    vlc
     wget
     wl-clipboard
     wine
