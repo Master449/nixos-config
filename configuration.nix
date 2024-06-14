@@ -63,7 +63,9 @@ menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os 
     nvtopPackages.full
     p7zip
     python312
+    qbittorrent
     tailscale
+    vlc
     wget
     wl-clipboard
     wine
@@ -104,6 +106,10 @@ menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os 
     printing.enable = true;
     flatpak.enable = true;
     tailscale.enable = true;
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn;
+    };
     openssh.enable = true;
     pipewire = {
       enable = true;
@@ -111,6 +117,7 @@ menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os 
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    resolved.enable = true;
     xserver.videoDrivers = [ "amdgpu" ];
   };
 
