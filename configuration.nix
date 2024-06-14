@@ -8,6 +8,8 @@
     ./modules/virtualization.nix
     ./modules/samba.nix
     ];
+  
+  # ------------------ Nix Settings ---------------
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.nixPath = [ 
@@ -15,12 +17,20 @@
     "nixos-config=/home/david/Documents/nixos-config/configuration.nix" 
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
-
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+  
+  nixpkgs.config.allowUnfree = true;
+  
+  nixpkgs.config.packageOverrides = pkgs: {
+    vivaldi = pkgs.vivaldi.overrideAttrs (oldAttrs: {
+      dontWrapQtApps = false;
+      dontPatchELF = true;
+      nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
+    });
   };
+  
+  system.stateVersion = "23.11"; # Did you read the comment?
+
+  # ------------------ Packages and Services ---------------
 
   environment.systemPackages = with pkgs; [
     btop
@@ -41,35 +51,6 @@
     zsh
   ];
   
-  nixpkgs.config.packageOverrides = pkgs: {
-    vivaldi = pkgs.vivaldi.overrideAttrs (oldAttrs: {
-      dontWrapQtApps = false;
-      dontPatchELF = true;
-      nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
-    });
-  };
-
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-  networking.hostName = "nixbox";
-  # networking.wireless.enable = true;
-  networking.networkmanager.enable = true;
-  
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-
   services = {
     printing.enable = true;
     flatpak.enable = true;
@@ -89,7 +70,6 @@
     xserver.videoDrivers = [ "amdgpu" ];
   };
 
-  time.timeZone = "America/Chicago";
   
   programs.steam = {
     enable = true;
@@ -98,7 +78,37 @@
 
   programs.gamemode.enable = true;
   programs.zsh.enable = true;
+ 
+ # ------------------ Locale Settings ---------------
 
-  nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "23.11"; # Did you read the comment?
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+
+  time.timeZone = "America/Chicago";
+  
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  networking.hostName = "nixbox";
+  # networking.wireless.enable = true;
+  networking.networkmanager.enable = true;
+  
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+
+  # ------------------------------------------------
 }
