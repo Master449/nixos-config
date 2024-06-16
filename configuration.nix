@@ -34,6 +34,7 @@
 
   environment.systemPackages = with pkgs; [
     btop
+    cifs-utils
     curl
     xdelta
     git
@@ -43,6 +44,8 @@
     nvtopPackages.full
     p7zip
     python312
+    rustc
+    rustup
     tailscale
     wget
     wl-clipboard

@@ -12,6 +12,7 @@
     extraGroups = [ "networkmanager" "wheel" "kvm" "libvirt" "libvirtd" ];
     isNormalUser = true;
     packages = with pkgs; [
+      cifs-utils
       discord
       dolphin
       fastfetch
