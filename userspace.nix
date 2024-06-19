@@ -18,6 +18,7 @@
       fastfetch
       jdk17
       lutris
+      obsidian
       prismlauncher
       qbittorrent
       steam

@@ -45,7 +45,6 @@
     p7zip
     python312
     rustc
-    rustup
     tailscale
     wget
     wl-clipboard
@@ -84,10 +83,13 @@
  
   # ------------------ Hardware Settings ---------------
   
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+  hardware = {
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+    steam-hardware.enable = true;
   };
 
   networking.hostName = "nixbox";
