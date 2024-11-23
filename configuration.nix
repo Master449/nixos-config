@@ -2,11 +2,6 @@
 {
   imports = [ 
     ./hardware-configuration.nix 
-    ./boot/grub.nix
-    ./userspace.nix 
-    ./desktops/hyprland.nix
-    ./modules/virtualization.nix
-    ./modules/samba.nix
     ];
   
   # ------------------ Nix Settings ---------------
