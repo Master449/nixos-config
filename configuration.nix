@@ -69,7 +69,6 @@
     resolved.enable = true;
     xserver.videoDrivers = [ "amdgpu" ];
   };
-
   
   programs.steam = {
     enable = true;
@@ -84,19 +83,10 @@
   hardware = {
     graphics = {
       enable = true;
-      #driSupport = true;
-      #driSupport32Bit = true;
     };
     steam-hardware.enable = true;
   };
-
-  networking.hostName = "nixbox";
-  # networking.wireless.enable = true;
-  networking.networkmanager.enable = true;
-  networking.networkmanager.insertNameservers = [ "192.168.0.127" ];
-  networking.nameservers = [ "192.168.0.127" ];
   
-  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   
@@ -116,7 +106,6 @@
   };
 
   time.timeZone = "America/Chicago";
-  
 
   # ------------------------------------------------
 }

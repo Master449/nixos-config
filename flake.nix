@@ -10,14 +10,14 @@
     new-system = nixpkgs.lib.nixosSystem;
   in {
     nixosConfigurations = {
-      hypr-box = new-system {
+      powerhouse = new-system {
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
             ./configuration.nix
             ./boot/grub.nix
             ./desktops/hyprland.nix
-            ./modules/virtualization.nix
+            ./modules/kernel/virtualization.nix
             ./userspace.nix
         ];
       };
