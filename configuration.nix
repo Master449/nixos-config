@@ -4,7 +4,7 @@
     ./hardware-configuration.nix 
     ./boot/grub.nix
     ./userspace.nix 
-    ./desktops/plasma6.nix
+    ./desktops/hyprland.nix
     ./modules/virtualization.nix
     ./modules/samba.nix
     ];
@@ -13,8 +13,8 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.nixPath = [ 
-    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos-unstable"
-    "nixos-config=/home/david/Documents/nixos-config/configuration.nix" 
+    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+    "nixos-config=/home/david/nixos-config/configuration.nix" 
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
   
@@ -28,15 +28,16 @@
     });
   };
   
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.04"; # Did you read the comment?
 
   # ------------------ Packages and Services ---------------
 
   environment.systemPackages = with pkgs; [
+    bat
     btop
     cifs-utils
     curl
-    xdelta
+    fzf
     git
     htop
     kitty
@@ -46,10 +47,12 @@
     python312
     rustc
     tailscale
+    tor-browser
     wget
     wl-clipboard
     wine
     winetricks
+    xdelta
     zsh
   ];
   
@@ -84,10 +87,10 @@
   # ------------------ Hardware Settings ---------------
   
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      #driSupport = true;
+      #driSupport32Bit = true;
     };
     steam-hardware.enable = true;
   };
@@ -95,8 +98,10 @@
   networking.hostName = "nixbox";
   # networking.wireless.enable = true;
   networking.networkmanager.enable = true;
+  networking.networkmanager.insertNameservers = [ "192.168.0.127" ];
+  networking.nameservers = [ "192.168.0.127" ];
   
-  sound.enable = true;
+  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   

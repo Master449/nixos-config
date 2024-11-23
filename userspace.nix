@@ -9,9 +9,10 @@
   
   users.users.david = {
     description = "David Flowers";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "libvirt" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "libvirt" "libvirtd" "input" ];
     isNormalUser = true;
     packages = with pkgs; [
+      bambu-studio
       cifs-utils
       discord
       dolphin

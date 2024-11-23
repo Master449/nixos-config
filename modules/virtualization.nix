@@ -6,7 +6,7 @@
   
   systemd.services.libvirtd.preStart = ''
    # Copy hook files
-   cp -rf /home/david/Documents/.dotfiles/hooks /var/lib/libvirt/
+   cp -rf /home/david/.dotfiles/hooks /var/lib/libvirt/
    chmod 755 /var/lib/libvirt/hooks
   
    # Make them executable
