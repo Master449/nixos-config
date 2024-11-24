@@ -49,7 +49,7 @@
           ./kernel/gpu.nix
           ./kernel/virtualization.nix
           ./kernel/audio.nix
-          ./hosts/chronos/hardware-configuration.nix
+          ./hardware/chronos/hardware-configuration.nix
         ];
       };
     };
