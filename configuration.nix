@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 {
+  
   # ------------------ Nix Settings ---------------
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

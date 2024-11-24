@@ -3,25 +3,39 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: 
+  outputs = { ... }@inputs: 
   let 
-    new-system = nixpkgs.lib.nixosSystem;
+    unstable-system = inputs.nixpkgs.lib.nixosSystem;
+    stable-system = inputs.nixpkgs-stable.lib.nixosSystem;
   in {
     nixosConfigurations = {
-      powerhouse = new-system {
+      powerhouse = unstable-system {
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
-            # General modules
-            ./configuration.nix
-            ./boot/grub.nix
-            ./desktops/hyprland.nix
-            ./modules/kernel/virtualization.nix
-            # Host specific modules (I know, I know, theres if statements, shut up)
-            ./hosts/powerhouse/hardware-configuration.nix
-            ./hosts/powerhouse/userspace.nix
+          { networking.hostName = "powerhouse"; }
+          ./configuration.nix
+          ./boot/grub.nix
+          ./desktops/hyprland.nix
+            ./modules/gpu.nix
+          ./modules/kernel/virtualization.nix
+          ./hosts/powerhouse/hardware-configuration.nix
+          ./hosts/powerhouse/userspace.nix
+        ];
+      };
+      chronos = stable-system {
+        specialArgs = { inherit inputs; };
+        system = "x86_64-linux";
+        modules = [
+          { networking.hostName = "chronos"; }
+          ./configuration.nix
+          ./boot/grub.nix
+          ./modules/services/homelab-services.nix
+          ./modules/kernel/virtualization.nix
+          ./hosts/powerhouse/hardware-configuration.nix
         ];
       };
     };
