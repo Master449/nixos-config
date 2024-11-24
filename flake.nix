@@ -20,10 +20,14 @@
           ./configuration.nix
           ./boot/grub.nix
           ./desktops/hyprland.nix
-            ./modules/gpu.nix
-          ./modules/kernel/virtualization.nix
+          ./services/ssh.nix
+          ./services/vpn.nix
+          ./kernel/gpu.nix
+          ./kernel/virtualization.nix
+          ./kernel/audio.nix
           ./hosts/powerhouse/hardware-configuration.nix
           ./hosts/powerhouse/userspace.nix
+          { security.rtkit.enable = true; }
         ];
       };
       chronos = stable-system {
@@ -33,8 +37,8 @@
           { networking.hostName = "chronos"; }
           ./configuration.nix
           ./boot/grub.nix
-          ./modules/services/homelab-services.nix
-          ./modules/kernel/virtualization.nix
+          ./services/homelab.nix
+          ./kernel/virtualization.nix
           ./hosts/powerhouse/hardware-configuration.nix
         ];
       };

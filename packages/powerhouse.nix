@@ -1,0 +1,22 @@
+{ lib, config, pkgs, ... }:
+{
+  nixpkgs.config.packageOverrides = pkgs: {
+    vivaldi = pkgs.vivaldi.overrideAttrs (oldAttrs: {
+      dontWrapQtApps = false;
+      dontPatchELF = true;
+      nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
+    });
+  };
+  environment.systemPackages = with pkgs; [
+    cifs-utils
+    nvtopPackages.full
+    p7zip
+    python312
+    rustc
+    tor-browser
+    wine
+    winetricks
+    xdelta
+    wl-clipboard
+  ];
+}
