@@ -14,12 +14,14 @@
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
+            # General modules
             ./configuration.nix
-            ./hosts/powerhouse/hardware-configuration.nix
             ./boot/grub.nix
             ./desktops/hyprland.nix
             ./modules/kernel/virtualization.nix
-            ./userspace.nix
+            # Host specific modules (I know, I know, theres if statements, shut up)
+            ./hosts/powerhouse/hardware-configuration.nix
+            ./hosts/powerhouse/userspace.nix
         ];
       };
     };
