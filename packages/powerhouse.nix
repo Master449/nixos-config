@@ -19,5 +19,6 @@
     winetricks
     xdelta
     wl-clipboard
+    vivaldi
   ];
 }
