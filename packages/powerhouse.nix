@@ -8,6 +8,7 @@
     });
   };
   environment.systemPackages = with pkgs; [
+    discord
     cifs-utils
     nvtopPackages.full
     p7zip
