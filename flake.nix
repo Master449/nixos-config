@@ -17,17 +17,20 @@
         system = "x86_64-linux";
         modules = [
           { networking.hostName = "powerhouse"; }
+          { security.rtkit.enable = true; }
           ./configuration.nix
+          ./userspace.nix
           ./boot/grub.nix
           ./desktops/hyprland.nix
+          ./packages/powerhouse.nix  
+          ./networking/network-manager.nix
           ./services/ssh.nix
           ./services/vpn.nix
+          ./services/steam.nix
           ./kernel/gpu.nix
           ./kernel/virtualization.nix
           ./kernel/audio.nix
-          ./hosts/powerhouse/hardware-configuration.nix
-          ./hosts/powerhouse/userspace.nix
-          { security.rtkit.enable = true; }
+          ./hardware/powerhouse/hardware-configuration.nix
         ];
       };
       chronos = stable-system {
@@ -35,11 +38,18 @@
         system = "x86_64-linux";
         modules = [
           { networking.hostName = "chronos"; }
+          { system.stateVersion = "24.05"; }
           ./configuration.nix
-          ./boot/grub.nix
+          ./userspace.nix
+          ./boot/systemd.nix
           ./services/homelab.nix
+          ./packages/chronos.nix
+          ./networking/network-manager.nix
+          ./networking/homelab-firewall.nix
+          ./kernel/gpu.nix
           ./kernel/virtualization.nix
-          ./hosts/powerhouse/hardware-configuration.nix
+          ./kernel/audio.nix
+          ./hosts/chronos/hardware-configuration.nix
         ];
       };
     };
