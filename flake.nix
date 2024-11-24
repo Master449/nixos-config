@@ -15,6 +15,7 @@
         system = "x86_64-linux";
         modules = [
             ./configuration.nix
+            ./hosts/powerhouse/hardware-configuration.nix
             ./boot/grub.nix
             ./desktops/hyprland.nix
             ./modules/kernel/virtualization.nix
