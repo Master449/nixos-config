@@ -6,7 +6,6 @@
     david = {
       description = "David Flowers";
       isNormalUser = true;
-      description = "david";
       extraGroups = [ "wheel" "admin" "networkmanager" "samba" "docker" "libvirtd" "libvirt" "kvm" ];
       shell = pkgs.zsh;
       packages = with pkgs; [];

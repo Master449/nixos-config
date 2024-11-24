@@ -8,7 +8,8 @@ in
   config = mkMerge [
     (mkIf (hostname == "powerhouse") {
       services.xserver.videoDrivers = [ "amdgpu" ];
-      hardware.steam-hardware.enable= = true;
+      hardware.steam-hardware.enable = true;
+      hardware.graphics.enable = true;
     })
     (mkIf (hostname == "chronos") {
       services.xserver.videoDrivers = [ "nvidia" ];
@@ -26,6 +27,4 @@ in
       };
     })
   ];
-
-  hardware.graphics.enable = true;
 }
