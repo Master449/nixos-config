@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = { ... }@inputs: 
@@ -16,12 +17,14 @@
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
+          inputs.stylix.nixosModules.stylix
           { networking.hostName = "powerhouse"; }
           { security.rtkit.enable = true; }
           ./configuration.nix
+          ./stylix.nix
           ./userspace.nix
           ./boot/grub.nix
-          ./desktops/hyprland.nix
+          ./desktops/gnome.nix
           ./packages/powerhouse.nix  
           ./networking/network-manager.nix
           ./services/ssh.nix

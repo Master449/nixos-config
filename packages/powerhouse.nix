@@ -14,6 +14,7 @@
     p7zip
     python312
     rustc
+    starship
     tor-browser
     wine
     winetricks
