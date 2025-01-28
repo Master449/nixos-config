@@ -11,11 +11,13 @@
     discord
     cifs-utils
     nvtopPackages.full
+    onlyoffice-desktopeditors
     p7zip
     python312
     qdirstat
     rustc
     starship
+    syncthing
     tor-browser
     wine
     winetricks
