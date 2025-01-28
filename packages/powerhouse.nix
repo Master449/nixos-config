@@ -13,6 +13,7 @@
     nvtopPackages.full
     p7zip
     python312
+    qdirstat
     rustc
     starship
     tor-browser

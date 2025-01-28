@@ -30,6 +30,7 @@
           ./services/ssh.nix
           ./services/vpn.nix
           ./services/steam.nix
+          ./services/ollama.nix
           ./kernel/gpu.nix
           ./kernel/virtualization.nix
           ./kernel/audio.nix
