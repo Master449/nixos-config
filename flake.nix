@@ -31,6 +31,7 @@
           ./services/vpn.nix
           ./services/steam.nix
           ./services/ollama.nix
+          ./services/syncthing.nix
           ./kernel/gpu.nix
           ./kernel/virtualization.nix
           ./kernel/audio.nix

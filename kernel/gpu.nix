@@ -10,6 +10,9 @@ in
       services.xserver.videoDrivers = [ "amdgpu" ];
       hardware.steam-hardware.enable = true;
       hardware.graphics.enable = true;
+      hardware.opengl.extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+      ];
     })
     (mkIf (hostname == "chronos") {
       services.xserver.videoDrivers = [ "nvidia" ];
