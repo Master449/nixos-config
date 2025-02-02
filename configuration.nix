@@ -9,24 +9,6 @@
   ];
   
   nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    bat
-    btop
-    curl
-    fastfetch
-    fzf
-    git
-    htop
-    kitty
-    pciutils
-    usbutils
-    neovim
-    tailscale
-    wget
-    zsh
-    virt-manager
-  ];
   
   services.flatpak.enable = true;
   
@@ -46,6 +28,5 @@
   };
 
   time.timeZone = "America/Chicago";
-  system.stateVersion = "24.11";
   # ------------------------------------------------
 }
