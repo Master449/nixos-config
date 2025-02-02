@@ -7,7 +7,9 @@
       nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
     });
   };
+
   environment.systemPackages = with pkgs; [
+    bambu-studio
     discord
     cifs-utils
     nvtopPackages.full
@@ -24,5 +26,6 @@
     xdelta
     wl-clipboard
     vivaldi
+    vlc
   ];
 }

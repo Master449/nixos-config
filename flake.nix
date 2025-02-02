@@ -24,7 +24,7 @@
           ./stylix.nix
           ./userspace.nix
           ./boot/grub.nix
-          ./desktops/gnome.nix
+          ./desktops/plasma6.nix
           ./packages/powerhouse.nix  
           ./networking/network-manager.nix
           ./services/ssh.nix

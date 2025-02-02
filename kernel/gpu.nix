@@ -10,7 +10,7 @@ in
       services.xserver.videoDrivers = [ "amdgpu" ];
       hardware.steam-hardware.enable = true;
       hardware.graphics.enable = true;
-      hardware.opengl.extraPackages = with pkgs; [
+      hardware.graphics.extraPackages = with pkgs; [
         rocmPackages.clr.icd
       ];
     })
