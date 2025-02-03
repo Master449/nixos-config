@@ -21,7 +21,6 @@ in
       hardware = {
         opengl.enable = true;
       };
-    };
-  })
-];
+    })
+  ];
 }

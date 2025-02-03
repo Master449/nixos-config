@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
+    home-manager.url = "github:nix-community/home-manager";
     stylix.url = "github:danth/stylix";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
@@ -14,6 +15,10 @@
     stable-system = inputs.nixpkgs-stable.lib.nixosSystem;
   in {
     nixosConfigurations = {
+      homeConfigurations."david" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ inputs.stylix.homeManagerModules.stylix ];
+      };
       powerhouse = unstable-system {
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
@@ -55,7 +60,7 @@
         modules = [
           { networking.hostName = "think"; }
           { system.stateVersion = "24.11"; }
-          nixos-hardware.nixosModules.lenovo-thinkpad-t480
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
           ./configuration.nix
           ./userspace.nix
           ./boot/grub.nix
