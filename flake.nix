@@ -14,11 +14,12 @@
     unstable-system = inputs.nixpkgs.lib.nixosSystem;
     stable-system = inputs.nixpkgs-stable.lib.nixosSystem;
   in {
+    homeConfigurations."david" = inputs.home-manager.lib.homeManagerConfiguration {
+      extraSpecialArgs = { inherit inputs; };
+      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+      modules = [ inputs.stylix.homeManagerModules.stylix ./home.nix ];
+    };
     nixosConfigurations = {
-      homeConfigurations."david" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ inputs.stylix.homeManagerModules.stylix ];
-      };
       powerhouse = unstable-system {
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";

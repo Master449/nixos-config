@@ -3,5 +3,6 @@
   environment.systemPackages = with pkgs; [
     bambu-studio
     tor-browser
+    home-manager
   ];
 }

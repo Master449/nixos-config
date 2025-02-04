@@ -9,6 +9,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    base16-schemes
     discord
     cifs-utils
     onlyoffice-desktopeditors
