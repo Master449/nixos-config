@@ -17,7 +17,7 @@
     homeConfigurations."david" = inputs.home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = { inherit inputs; };
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-      modules = [ inputs.stylix.homeManagerModules.stylix ./home.nix ];
+      modules = [ inputs.stylix.homeManagerModules.stylix ./userspace/home.nix ];
     };
     nixosConfigurations = {
       powerhouse = unstable-system {
@@ -28,31 +28,31 @@
           { networking.hostName = "powerhouse"; }
           { security.rtkit.enable = true; }
           { system.stateVersion = "24.11"; }
-          # Configuration or testing
+          # Configuration
           ./configuration.nix
-          ./stylix.nix
           
           # Userspace
-          ./userspace.nix
-          ./desktops/hyprland.nix
+          ./userspace/main.nix
 
           # Packages
-          ./packages/powerhouse.nix  
           ./packages/all.nix
+          ./packages/host-specific.nix
 
-          # Systemd services
+          # Services
           ./services/ssh.nix
           ./services/vpn.nix
           ./services/steam.nix
           ./services/ollama.nix
+          ./services/virtualization.nix
 
-          # Kernel moduels and hardware specific
-          ./boot/grub.nix
-          ./networking/network-manager.nix
-          ./kernel/gpu.nix
-          ./kernel/virtualization.nix
-          ./kernel/audio.nix
-          ./hardware/powerhouse/hardware-configuration.nix
+          # System
+          ./system/boot/grub.nix
+          ./system/hardware/gpu.nix
+          ./system/hardware/audio.nix
+          ./system/disk-layouts/powerhouse/hardware-configuration.nix
+          ./system/networking/network-manager.nix
+          ./system/desktops/hyprland.nix
+          ./system/stylix.nix
         ];
       };
       chronos = unstable-system {

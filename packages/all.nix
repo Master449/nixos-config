@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ config, pkgs, ... }:
 {
   nixpkgs.config.packageOverrides = pkgs: {
     vivaldi = pkgs.vivaldi.overrideAttrs (oldAttrs: {
