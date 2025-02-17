@@ -4,5 +4,6 @@
     bambu-studio
     tor-browser
     home-manager
+    xdg-desktop-portal
   ];
 }

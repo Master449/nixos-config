@@ -34,7 +34,7 @@
           
           # Userspace
           ./userspace.nix
-          ./desktops/plasma6.nix
+          ./desktops/hyprland.nix
 
           # Packages
           ./packages/powerhouse.nix  
