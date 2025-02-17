@@ -27,9 +27,6 @@
           inputs.stylix.nixosModules.stylix
           { networking.hostName = "powerhouse"; }
           { security.rtkit.enable = true; }
-          # Configuration
-          ./configuration.nix
-          
           # Userspace
           ./userspace/main.nix
 
@@ -41,6 +38,8 @@
           ./services/powerhouse.nix
 
           # System
+          ./system/locale.nix
+          ./system/nix.nix
           ./system/boot/grub.nix
           ./system/hardware/gpu.nix
           ./system/hardware/audio.nix
