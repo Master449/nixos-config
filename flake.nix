@@ -27,7 +27,6 @@
           inputs.stylix.nixosModules.stylix
           { networking.hostName = "powerhouse"; }
           { security.rtkit.enable = true; }
-          { system.stateVersion = "24.11"; }
           # Configuration
           ./configuration.nix
           
@@ -39,18 +38,15 @@
           ./packages/host-specific.nix
 
           # Services
-          ./services/ssh.nix
-          ./services/vpn.nix
-          ./services/steam.nix
-          ./services/ollama.nix
-          ./services/virtualization.nix
+          ./services/powerhouse.nix
 
           # System
           ./system/boot/grub.nix
           ./system/hardware/gpu.nix
           ./system/hardware/audio.nix
           ./system/disk-layouts/powerhouse/hardware-configuration.nix
-          ./system/networking/network-manager.nix
+          ./system/services/virtualization.nix
+          ./system/network/network-manager.nix
           ./system/desktops/hyprland.nix
           ./system/stylix.nix
         ];
@@ -63,16 +59,17 @@
           { system.stateVersion = "24.11"; }
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
           ./configuration.nix
-          ./userspace.nix
-          ./boot/grub.nix
+          ./userspace/main.nix
+          ./system/boot/grub.nix
             #./services/homelab.nix
-            #./packages/chronos.nix
-          ./networking/network-manager.nix
+          ./packages/host-specific.nix
+          ./packages/all.nix
+          ./system/network/network-manager.nix
             #./networking/homelab-firewall.nix
-          ./kernel/gpu.nix
+          ./system/hardware/gpu.nix
             #./kernel/virtualization.nix
-          ./kernel/audio.nix
-            #./hardware/chronos/hardware-configuration.nix
+          ./system/hardware/audio.nix
+          ./system/disk-layouts/thinkpad/hardware-configuration.nix
         ];
       };
     };
