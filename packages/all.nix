@@ -9,6 +9,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    obsidian
     base16-schemes
     discord
     cifs-utils
